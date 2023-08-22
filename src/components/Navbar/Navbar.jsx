@@ -1,4 +1,6 @@
 import logo from '@img/nike.png'
+import {Link} from 'react-router-dom'
+
 export default function Navbar() {
   return (
     <>
@@ -94,9 +96,9 @@ export default function Navbar() {
             </div>
             {/* Avatar */}
             <div className="dropdown">
-              <a
+              <Link
                 className="dropdown-toggle d-flex align-items-center hidden-arrow"
-                href="#"
+                to="/login"
                 id="navbarDropdownMenuAvatar"
                 role="button"
                 data-mdb-toggle="dropdown"
@@ -109,7 +111,7 @@ export default function Navbar() {
                   alt="Black and White Portrait of a Man"
                   loading="lazy"
                 />
-              </a>
+              </Link>
               <ul
                 className="dropdown-menu dropdown-menu-end"
                 aria-labelledby="navbarDropdownMenuAvatar"
