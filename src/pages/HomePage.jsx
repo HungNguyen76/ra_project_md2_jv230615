@@ -1,9 +1,9 @@
-import Navbar from "@/components/Navbar/Navbar";
+import Carousel from "@comp/Carousel/Carousel";
 
 export default function HomePage() {
   return (
     <div>
-        <Navbar />
+        <Carousel />
     </div>
   )
 }

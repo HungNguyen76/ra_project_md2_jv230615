@@ -1,14 +1,14 @@
-import logo from '@img/nike.png'
-import {Link} from 'react-router-dom'
-
+import logo from "@img/nike.png";
+import { Link } from "react-router-dom";
+import "./Navbar.scss";
+import { useSelector } from "react-redux";
 export default function Navbar() {
+  const userLoginStore = useSelector((store) => store.userLoginStore);
+
   return (
     <>
-      {/* Navbar */}
       <nav className="navbar navbar-expand-lg navbar-light bg-white">
-        {/* Container wrapper */}
         <div className="container-fluid">
-          {/* Toggle button */}
           <button
             className="navbar-toggler"
             type="button"
@@ -20,19 +20,15 @@ export default function Navbar() {
           >
             <i className="fas fa-bars" />
           </button>
-          {/* Collapsible wrapper */}
+
+          <div>
+            <Link className="navbar-brand mt-2 mt-lg-0" to="/">
+              <img src={logo} height={15} alt="MDB Logo" loading="lazy" />
+            </Link>
+          </div>
+
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            {/* Navbar brand */}
-            <a className="navbar-brand mt-2 mt-lg-0" href="#">
-              <img
-                src={logo}
-                height={15}
-                alt="MDB Logo"
-                loading="lazy"
-              />
-            </a>
-            {/* Left links */}
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
               <li className="nav-item">
                 <a className="nav-link" href="#">
                   Mens
@@ -49,12 +45,22 @@ export default function Navbar() {
                 </a>
               </li>
             </ul>
-            {/* Left links */}
           </div>
-          {/* Collapsible wrapper */}
-          {/* Right elements */}
+
           <div className="d-flex align-items-center">
-            {/* Icon */}
+            <form className="d-flex input-group w-auto">
+              <input
+                type="search"
+                className="form-control rounded m-1"
+                placeholder="Search"
+                aria-label="Search"
+                aria-describedby="search-addon"
+              />
+              {/* <span className="input-group-text border-0" id="search-addon">
+                <i className="fas fa-search" />
+              </span> */}
+            </form>
+
             <a className="link-secondary me-3" href="#">
               <i className="fas fa-shopping-cart" />
             </a>
@@ -98,19 +104,23 @@ export default function Navbar() {
             <div className="dropdown">
               <Link
                 className="dropdown-toggle d-flex align-items-center hidden-arrow"
-                to="/login"
+                to=""
                 id="navbarDropdownMenuAvatar"
                 role="button"
                 data-mdb-toggle="dropdown"
                 aria-expanded="false"
               >
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                  className="rounded-circle"
-                  height={25}
-                  alt="Black and White Portrait of a Man"
-                  loading="lazy"
-                />
+                {userLoginStore.userInfor == null ? (
+                  <i className="fas fa-user link-secondary me-3"></i>
+                ) : (
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/fir-demo-f297f.appspot.com/o/images%2FMinhu.jpeg?alt=media&token=0a3fc676-099e-4653-9db0-74451a59a24a"
+                    className="rounded-circle"
+                    height={25}
+                    alt="Black and White Portrait of a Man"
+                    loading="lazy"
+                  />
+                )}
               </Link>
               <ul
                 className="dropdown-menu dropdown-menu-end"
@@ -127,18 +137,15 @@ export default function Navbar() {
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Logout
-                  </a>
+                  <Link className="dropdown-item" to="/login">
+                    {userLoginStore.userInfor == null ? "Login" : "Logout"}
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
-          {/* Right elements */}
         </div>
-        {/* Container wrapper */}
       </nav>
-      {/* Navbar */}
     </>
   );
 }
