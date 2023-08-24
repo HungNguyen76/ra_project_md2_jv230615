@@ -2,15 +2,26 @@ import logo from "@img/nike.png";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { userLoginActions } from "../../stores/slices/userLogin.slice";
 export default function Navbar() {
   const userLoginStore = useSelector((store) => store.userLoginStore);
+
+  const [avatarImg, setAvatarImg] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (userLoginStore.userInfor === null) {
+      setAvatarImg("");
+    } else {
+      setAvatarImg(userLoginStore.userInfor.avatar);
+    }
+  }, [userLoginStore.userInfor?.avatar]);
 
   useEffect(() => {
     dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")));
   }, []);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-white">
@@ -62,9 +73,6 @@ export default function Navbar() {
                 aria-label="Search"
                 aria-describedby="search-addon"
               />
-              {/* <span className="input-group-text border-0" id="search-addon">
-                <i className="fas fa-search" />
-              </span> */}
             </form>
 
             <a className="link-secondary me-3" href="#">
@@ -120,7 +128,7 @@ export default function Navbar() {
                   <i className="fas fa-user link-secondary me-3"></i>
                 ) : (
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/fir-demo-f297f.appspot.com/o/images%2FMinhu.jpeg?alt=media&token=0a3fc676-099e-4653-9db0-74451a59a24a"
+                    src={avatarImg}
                     className="rounded-circle"
                     height={25}
                     alt="Black and White Portrait of a Man"

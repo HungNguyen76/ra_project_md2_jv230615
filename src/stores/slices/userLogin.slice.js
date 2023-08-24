@@ -53,11 +53,15 @@ const userLoginSlice = createSlice({
       if (!user) {
         alert("Không tìm thấy người dùng");
       } else {
-        state.userInfor = user; 
-        //ma hoa du lieu
-        let token = createToken(user, import.meta.env.VITE_APP_JWT_KEY)
-        //luu token trong local storage
-        localStorage.setItem("token", token)
+        if (user.password !== action.payload.inforLogin.password) {
+          alert("Mật khẩu không chính xác! Vui lòng nhập lại");
+        } else {
+          state.userInfor = user;
+          //ma hoa du lieu
+          let token = createToken(user, import.meta.env.VITE_APP_JWT_KEY);
+          //luu token trong local storage
+          localStorage.setItem("token", token);
+        }
       }
     });
     builder.addCase(checkTokenLocal.fulfilled, (state, action) => {
@@ -80,7 +84,7 @@ const userLoginSlice = createSlice({
           localStorage.removeItem("token");
         }
       } else {
-        localStorage.removeItem("token")
+        localStorage.removeItem("token");
       }
     });
   },
