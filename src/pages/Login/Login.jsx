@@ -26,7 +26,13 @@ export default function Login() {
     );
   };
   useEffect(() => {
-    if (userLoginStore.userInfor !== null) {
+    if (userLoginStore.userInfor == null) {
+      if (localStorage.getItem("token")) {
+        dispatch(
+          userLoginActions.checkTokenLocal(localStorage.getItem("token"))
+        );
+      }
+    } else {
       navigate("/");
     }
   }, [userLoginStore.userInfor]);

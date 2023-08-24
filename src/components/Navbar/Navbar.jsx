@@ -1,10 +1,16 @@
 import logo from "@img/nike.png";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { userLoginActions } from "../../stores/slices/userLogin.slice";
 export default function Navbar() {
   const userLoginStore = useSelector((store) => store.userLoginStore);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")));
+  }, []);
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-white">

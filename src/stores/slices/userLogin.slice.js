@@ -10,10 +10,32 @@ const login = createAsyncThunk("login", async (inforLogin) => {
   };
 });
 
+const checkTokenLocal = createAsyncThunk("checkTokenLocal", async (token) => {
+  let res = await api.user.findAllUser();
+  return {
+    users: res.data,
+    token: token,
+  };
+});
+
 function createToken(userObj, privateKey) {
-    return CryptoJS.AES.encrypt(JSON.stringify(userObj), privateKey).toString();
+  return CryptoJS.AES.encrypt(JSON.stringify(userObj), privateKey).toString();
 }
-console.log("createToken:", createToken)
+
+function checkToken(token, privateKey, keyEnv) {
+  try {
+    if (privateKey !== keyEnv) {
+      return false;
+    }
+    //giai ma
+    const decryptedData = CryptoJS.AES.decrypt(token, privateKey).toString(
+      CryptoJS.enc.Utf8
+    );
+    return JSON.parse(decryptedData);
+  } catch {
+    return false;
+  }
+}
 
 const userLoginSlice = createSlice({
   name: "userLogin",
@@ -27,34 +49,45 @@ const userLoginSlice = createSlice({
       let user = action.payload.users.find(
         (user) => user.userName == action.payload.inforLogin.userName
       );
-      console.log(
-        "🚀 ~ file: userLogin.slice.js:28 ~ builder.addCase ~ action.payload.inforLogin.userName:",
-        action.payload.inforLogin.userName
-      );
+
       if (!user) {
         alert("Không tìm thấy người dùng");
       } else {
-        state.userInfor = user;
+        state.userInfor = user; 
+        //ma hoa du lieu
+        let token = createToken(user, import.meta.env.VITE_APP_JWT_KEY)
+        //luu token trong local storage
+        localStorage.setItem("token", token)
       }
     });
-    // builder.addMatcher(
-    //   (action) => {
-    //     if (action.meta) {
-    //       return action;
-    //     }
-    //   },
-    //   (state, action) => {
-    //     if(action.meta) {
-    //         if(action.meta.requestStatus == "pending") {
-    //             state.loading = true;
-    //         }
-    //     }
-    //   }
-    // );
+    builder.addCase(checkTokenLocal.fulfilled, (state, action) => {
+      let deToken = checkToken(
+        action.payload.token,
+        import.meta.env.VITE_APP_JWT_KEY,
+        import.meta.env.VITE_APP_JWT_KEY
+      );
+      let user = action.payload.users.find(
+        (user) => user.userName == deToken.userName
+      );
+      if (deToken) {
+        if (user) {
+          if (user.password == deToken.password) {
+            state.userInfor = user;
+          } else {
+            localStorage.removeItem("token");
+          }
+        } else {
+          localStorage.removeItem("token");
+        }
+      } else {
+        localStorage.removeItem("token")
+      }
+    });
   },
 });
 export const userLoginActions = {
   ...userLoginSlice.actions,
   login,
+  checkTokenLocal,
 };
 export default userLoginSlice.reducer;
