@@ -1,14 +1,35 @@
 import logo from "@img/nike.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { userLoginActions } from "../../stores/slices/userLogin.slice";
 export default function Navbar() {
   const userLoginStore = useSelector((store) => store.userLoginStore);
-
+  const [isLogin, setIsLogin] = useState(
+    () => localStorage.getItem("token") || null
+  );
   const [avatarImg, setAvatarImg] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  const checkIsLogin = () => {
+    const token = localStorage.getItem("token");
+    setIsLogin(token);
+  };
+  useEffect(() => {
+    checkIsLogin();
+  }, []);
+  const handleLogout = () => {
+    if (window.confirm("Bạn có muốn đăng xuất không?")) {
+      localStorage.removeItem("token");
+      dispatch(userLoginActions.logOut());
+      navigate("/login");
+    }
+  };
+  useEffect(() => {
+    checkIsLogin();
+  }, [userLoginStore]);
 
   useEffect(() => {
     if (userLoginStore.userInfor === null) {
@@ -127,13 +148,23 @@ export default function Navbar() {
                 {userLoginStore.userInfor == null ? (
                   <i className="fas fa-user link-secondary me-3"></i>
                 ) : (
-                  <img
-                    src={avatarImg}
-                    className="rounded-circle"
-                    height={25}
-                    alt="Black and White Portrait of a Man"
-                    loading="lazy"
-                  />
+                  <div className="avatarBox">
+                    <span>
+                      Xin chào,
+                      {`${userLoginStore.userInfor.userName
+                        .toUpperCase()
+                        .charAt(0)}${userLoginStore.userInfor.userName.slice(
+                        1
+                      )}`}
+                    </span>
+                    <img
+                      src={avatarImg}
+                      className="rounded-circle"
+                      height={25}
+                      alt="Black and White Portrait of a Man"
+                      loading="lazy"
+                    />
+                  </div>
                 )}
               </Link>
               <ul
@@ -151,9 +182,15 @@ export default function Navbar() {
                   </a>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/login">
-                    {userLoginStore.userInfor == null ? "Login" : "Logout"}
-                  </Link>
+                  {isLogin ? (
+                    <Link className="dropdown-item" to="/" onClick={handleLogout}>
+                      Logout
+                    </Link>
+                  ) : (
+                    <Link className="dropdown-item" to="/login">
+                      Login
+                    </Link>
+                  )}
                 </li>
               </ul>
             </div>

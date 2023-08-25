@@ -43,7 +43,14 @@ const userLoginSlice = createSlice({
     loading: false,
     userInfor: null,
   },
-  reducers: {},
+  reducers: {
+    logOut: (state, action) => {
+      console.log("action:", action)
+      return {
+        ...state, userInfor: null
+      }
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
       let user = action.payload.users.find(

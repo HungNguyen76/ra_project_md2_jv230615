@@ -1,5 +1,11 @@
 .menu-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.avatarBox {
+  span {
+    color: #0000008C;
+    margin-right: 5px;
+  }
 }
