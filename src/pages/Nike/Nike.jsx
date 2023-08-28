@@ -49,7 +49,7 @@ export default function ListProduct() {
                 <span>{convertToVND(item.price)}</span>
                 {/* <span>{item.price}</span> */}
               </div>
-              {/* <a class="btn">add to cart</a> */}
+              <a className="btn">add to cart</a>
             </div>
           </div>
         ))}

@@ -1,6 +1,7 @@
 import Navbar from "@comp/Navbar/Navbar";
 import { Routes, Route } from "react-router-dom";
 import LazyLoad from '@comp/LazyLoad';
+import './App.css'
 
 function App() {
   return (

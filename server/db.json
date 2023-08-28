@@ -54,8 +54,22 @@
     {
       "id": 1,
       "name": "Jordan Max Aura 5",
-      "url": "@productImg/jordan1.webp",
+      "url": "../src/assets/images/product/jordan/jordan1.webp",
       "price": 57500,
+      "type": "men"
+    },
+    {
+      "id": 2,
+      "name": "Jordan Max Aura 5",
+      "url": "../src/assets/images/product/jordan/jordan2.webp",
+      "price": 57500,
+      "type": "men"
+    },
+    {
+      "id": 3,
+      "name": "Jordan Max Aura 5",
+      "url": "../src/assets/images/product/jordan/jordan3.webp",
+      "price": 58000,
       "type": "men"
     }
   ]
