@@ -10,6 +10,7 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
       "@comp": fileURLToPath(new URL("./src/components", import.meta.url)),
       "@img": fileURLToPath(new URL("./src/assets/images", import.meta.url)),
+      "@productImg": fileURLToPath(new URL("./src/assets/images/product", import.meta.url)),
       "@api": fileURLToPath(new URL("./src/services/api", import.meta.url)),
       "@rtk": fileURLToPath(
         new URL("./src/stores/slices", import.meta.url)

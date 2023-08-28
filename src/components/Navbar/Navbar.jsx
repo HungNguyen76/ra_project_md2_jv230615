@@ -68,19 +68,19 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/men">
                   Mens
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/women">
                   Womens
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/child">
                   Child
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -150,7 +150,7 @@ export default function Navbar() {
                 ) : (
                   <div className="avatarBox">
                     <span>
-                      Xin chào,
+                      Xin chào,{" "}
                       {`${userLoginStore.userInfor.userName
                         .toUpperCase()
                         .charAt(0)}${userLoginStore.userInfor.userName.slice(
