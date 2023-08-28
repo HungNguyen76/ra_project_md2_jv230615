@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={LazyLoad(() => import("@/pages/HomePage"))()}/>
           <Route path="/login" element={LazyLoad(() => import("@/pages/Login/Login"))()}/>
           <Route path="/register" element={LazyLoad(() => import("@/pages/Register/Register"))()}/>
-          <Route path="/men/:type" element={LazyLoad(() => import("@/pages/Nike/Nike"))()}/>
+          <Route path="/product/:type" element={LazyLoad(() => import("@/pages/Nike/Nike"))()}/>
         </Routes>
       </div>
     </div>

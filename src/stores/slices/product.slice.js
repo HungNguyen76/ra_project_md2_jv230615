@@ -5,7 +5,13 @@ const findAllProducts = createAsyncThunk(
     "findAllProducts",
     async () => {
         let res = await api.product.findAllProducts();
-        console.log("🚀 ~ file: product.slice.js:8 ~ res:", res)
+        return res.data
+    }
+)
+const filterProductByType = createAsyncThunk(
+    "filterProductByType",
+    async (type) => {
+        let res = await api.product.filterProductByType(type)
         return res.data
     }
 )
@@ -20,13 +26,12 @@ const productSlice = createSlice(
         extraReducers: (builder) => {
             // find all products
             builder.addCase(findAllProducts.fulfilled, (state, action) => {
-                console.log("action:", action.payload)
                 state.listProducts = [...action.payload]
             })
             // filter product by type
-            // builder.addCase(filterProductByType.fulfilled, (state, action) => {
-            //     state.listProducts = [...action.payload]
-            // })
+            builder.addCase(filterProductByType.fulfilled, (state, action) => {
+                state.listProducts = [...action.payload]
+            })
             // seacrh product by id
             // builder.addCase(searchProductById.fulfilled, (state, action) => {
             //     state.product = { ...action.payload }
@@ -42,6 +47,7 @@ const productSlice = createSlice(
 
 export const productActions = {
     ...productSlice.actions,
-    findAllProducts
+    findAllProducts,
+    filterProductByType
 }
 export default productSlice.reducer;

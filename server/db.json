@@ -56,21 +56,72 @@
       "name": "Jordan Max Aura 5",
       "url": "../src/assets/images/product/jordan/jordan1.webp",
       "price": 57500,
-      "type": "men"
+      "type": "jordan",
+      "gender": "men"
     },
     {
       "id": 2,
-      "name": "Jordan Max Aura 5",
+      "name": "Jordan Retro 6 G",
       "url": "../src/assets/images/product/jordan/jordan2.webp",
       "price": 57500,
-      "type": "men"
+      "type": "jordan",
+      "gender": "men"
     },
     {
       "id": 3,
-      "name": "Jordan Max Aura 5",
-      "url": "../src/assets/images/product/jordan/jordan3.webp",
+      "name": "Jordan InfinityRN 4",
+      "url": "../src/assets/images/product/running/running1.webp",
+      "price": 4000,
+      "type": "running",
+      "gender": "men"
+    },
+    {
+      "id": 4,
+      "name": "Jordan Free RN NN",
+      "url": "../src/assets/images/product/running/running2.webp",
       "price": 58000,
-      "type": "men"
+      "type": "running",
+      "gender": "men"
+    },
+    {
+      "id": 5,
+      "name": "Air Jordan XXXVIII PF",
+      "url": "../src/assets/images/product/basketball/basketball1.webp",
+      "price": 58000,
+      "type": "basketball",
+      "gender": "men"
+    },
+    {
+      "id": 6,
+      "name": "Nike G.T. Jump 2 EP",
+      "url": "../src/assets/images/product/basketball/basketball2.webp",
+      "price": 58000,
+      "type": "basketball",
+      "gender": "men"
+    },
+    {
+      "id": 7,
+      "name": "Nike Dunk Low Retro",
+      "url": "../src/assets/images/product/lifestyle/lifestyle1.webp",
+      "price": 58000,
+      "type": "lifestyle",
+      "gender": "men"
+    },
+    {
+      "id": 8,
+      "name": "Air Jordan 1 Low SE",
+      "url": "../src/assets/images/product/lifestyle/lifestyle2.webp",
+      "price": 58000,
+      "type": "lifestyle",
+      "gender": "men"
+    },
+    {
+      "id": 9,
+      "name": "Nike Tiempo Legend 10 Academy",
+      "url": "../src/assets/images/product/football/football1.webp",
+      "price": 58000,
+      "type": "football",
+      "gender": "men"
     }
   ]
 }
