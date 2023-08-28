@@ -1,30 +1,32 @@
-import './Nike.scss'
+import './Men.scss'
 import { useEffect } from "react";
 import { convertToVND } from '@mieuteacher/meomeojs';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '@rtk/product.slice';
 
+export default function Men() {
+  const listProductByGender = useSelector(
+    (store) => store.productStore.listProducts
+  );
+  console.log("🚀 ~ file: Men.jsx:12 ~ Men ~ listProductByGender:", listProductByGender)
 
-export default function ListProduct() {
-  const listProductStore = useSelector((store) => store.productStore.listProducts);
-
-
-  const dispatch = useDispatch()
-  const { type } = useParams()
+  const dispatch = useDispatch();
+  const { type } = useParams();
+  console.log("🚀 ~ file: Men.jsx:16 ~ Men ~ gender:", type)
 
   useEffect(() => {
-    dispatch(productActions.filterProductByType(type))
-  }, [type])
+    dispatch(productActions.filterProductByGender(type));
+  }, [type]);
 
   return (
     <section className="popular" id="popular">
       <div className="heading">
-        <h3>Popular Jordan For Men</h3>
+        <h3>All Product For Men</h3>
       </div>
 
       <div className="box-container">
-        {listProductStore.map((item) => (
+        {listProductByGender.map((item) => (
           <div className="box" key={item.id}>
             <a href="#" className="fas fa-heart"></a>
             <div className="image">
@@ -41,7 +43,9 @@ export default function ListProduct() {
                 <i className="fas fa-star-half-alt"></i>
                 <span> ({item.stock}) </span>
               </div>
-              <div className="price"><span>{convertToVND(item.price)}</span></div>
+              <div className="price">
+                <span>{convertToVND(item.price)}</span>
+              </div>
               {/* <a className="btn">add to cart</a> */}
             </div>
           </div>

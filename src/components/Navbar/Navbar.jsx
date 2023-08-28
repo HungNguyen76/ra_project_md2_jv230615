@@ -68,17 +68,17 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/men">
+                <Link className="nav-link" to="/gender/men">
                   Mens
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/women">
+                <Link className="nav-link" to="/gender/women">
                   Womens
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/child">
+                <Link className="nav-link" to="/gender/child">
                   Child
                 </Link>
               </li>

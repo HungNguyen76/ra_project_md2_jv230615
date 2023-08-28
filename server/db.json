@@ -56,6 +56,7 @@
       "name": "Jordan Max Aura 5",
       "url": "../src/assets/images/product/jordan/jordan1.webp",
       "price": 57500,
+      "stock": 34,
       "type": "jordan",
       "gender": "men"
     },
@@ -64,6 +65,7 @@
       "name": "Jordan Retro 6 G",
       "url": "../src/assets/images/product/jordan/jordan2.webp",
       "price": 57500,
+      "stock": 25,
       "type": "jordan",
       "gender": "men"
     },
@@ -71,7 +73,8 @@
       "id": 3,
       "name": "Jordan InfinityRN 4",
       "url": "../src/assets/images/product/running/running1.webp",
-      "price": 4000,
+      "price": 40000,
+      "stock":10,
       "type": "running",
       "gender": "men"
     },
@@ -80,6 +83,7 @@
       "name": "Jordan Free RN NN",
       "url": "../src/assets/images/product/running/running2.webp",
       "price": 58000,
+      "stock": 30,
       "type": "running",
       "gender": "men"
     },
@@ -88,6 +92,7 @@
       "name": "Air Jordan XXXVIII PF",
       "url": "../src/assets/images/product/basketball/basketball1.webp",
       "price": 58000,
+      "stock": 49,
       "type": "basketball",
       "gender": "men"
     },
@@ -96,6 +101,7 @@
       "name": "Nike G.T. Jump 2 EP",
       "url": "../src/assets/images/product/basketball/basketball2.webp",
       "price": 58000,
+      "stock": 45,
       "type": "basketball",
       "gender": "men"
     },
@@ -103,7 +109,8 @@
       "id": 7,
       "name": "Nike Dunk Low Retro",
       "url": "../src/assets/images/product/lifestyle/lifestyle1.webp",
-      "price": 58000,
+      "price": 580000,
+      "stock":34,
       "type": "lifestyle",
       "gender": "men"
     },
@@ -111,7 +118,8 @@
       "id": 8,
       "name": "Air Jordan 1 Low SE",
       "url": "../src/assets/images/product/lifestyle/lifestyle2.webp",
-      "price": 58000,
+      "price": 580000,
+      "stock": 76,
       "type": "lifestyle",
       "gender": "men"
     },
@@ -120,6 +128,7 @@
       "name": "Nike Tiempo Legend 10 Academy",
       "url": "../src/assets/images/product/football/football1.webp",
       "price": 58000,
+      "stock":90,
       "type": "football",
       "gender": "men"
     }

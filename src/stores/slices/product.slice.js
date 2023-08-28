@@ -15,6 +15,13 @@ const filterProductByType = createAsyncThunk(
         return res.data
     }
 )
+const filterProductByGender = createAsyncThunk(
+    "filterProductByGender",
+    async (gender) => {
+        let res = await api.product.filterProductByGender(gender)
+        return res.data
+    }
+)
 const productSlice = createSlice(
     {
         name: "product",
@@ -32,6 +39,11 @@ const productSlice = createSlice(
             builder.addCase(filterProductByType.fulfilled, (state, action) => {
                 state.listProducts = [...action.payload]
             })
+            // filter product by gender
+            builder.addCase(filterProductByGender.fulfilled, (state, action) => {
+                state.listProducts = [...action.payload]
+            })
+
             // seacrh product by id
             // builder.addCase(searchProductById.fulfilled, (state, action) => {
             //     state.product = { ...action.payload }
@@ -48,6 +60,7 @@ const productSlice = createSlice(
 export const productActions = {
     ...productSlice.actions,
     findAllProducts,
-    filterProductByType
+    filterProductByType,
+    filterProductByGender
 }
 export default productSlice.reducer;
