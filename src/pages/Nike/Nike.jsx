@@ -4,6 +4,7 @@ import { convertToVND } from '@mieuteacher/meomeojs';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '@rtk/product.slice';
+import NikeModal from '@comp/Modals/NikeModal';
 
 
 export default function ListProduct() {
@@ -20,7 +21,7 @@ export default function ListProduct() {
   return (
     <section className="popular" id="popular">
       <div className="heading">
-        <h3>Popular Jordan For Men</h3>
+        <h3>{`Popular ${type.toUpperCase().charAt(0)}${type.slice(1)} For Men`}</h3>
       </div>
 
       <div className="box-container">
@@ -28,10 +29,9 @@ export default function ListProduct() {
           <div className="box" key={item.id}>
             <a href="#" className="fas fa-heart"></a>
             <div className="image">
-              <img src={item.url} />
-              {/* <FoodModal food={food}></FoodModal> */}
+              <NikeModal nike={item} />
             </div>
-            <div className="content">
+            <div className="content"> 
               <h5>{item.name}</h5>
               <div className="stars">
                 <i className="fas fa-star"></i>
@@ -42,7 +42,6 @@ export default function ListProduct() {
                 <span> ({item.stock}) </span>
               </div>
               <div className="price"><span>{convertToVND(item.price)}</span></div>
-              {/* <a className="btn">add to cart</a> */}
             </div>
           </div>
         ))}

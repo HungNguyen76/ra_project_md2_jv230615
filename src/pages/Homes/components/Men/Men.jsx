@@ -4,6 +4,7 @@ import { convertToVND } from '@mieuteacher/meomeojs';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '@rtk/product.slice';
+import NikeModal from '@comp/Modals/NikeModal';
 
 export default function Men() {
   const listProductByGender = useSelector(
@@ -30,8 +31,7 @@ export default function Men() {
           <div className="box" key={item.id}>
             <a href="#" className="fas fa-heart"></a>
             <div className="image">
-              <img src={item.url} />
-              {/* <FoodModal food={food}></FoodModal> */}
+              <NikeModal nike={item}></NikeModal>
             </div>
             <div className="content">
               <h5>{item.name}</h5>
