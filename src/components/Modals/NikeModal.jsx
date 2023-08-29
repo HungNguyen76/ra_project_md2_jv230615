@@ -3,30 +3,41 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./NikeModal.scss";
 import { convertToVND } from "@mieuteacher/meomeojs";
+import toast, { Toaster } from "react-hot-toast";
 
 function NikeModal({ nike }) {
-  const modalRef = useRef(null)
+  const modalRef = useRef(null);
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   useEffect(() => {
     const handleModalExit = () => {
-      if(modalRef.current) {
-        modalRef.current.classList.remove('modal-fade-enter');
-        modalRef.current.classList.add('modal-fade-exit');
+      if (modalRef.current) {
+        modalRef.current.classList.remove("modal-fade-enter");
+        modalRef.current.classList.add("modal-fade-exit");
       }
-    }
+    };
     const handleModalEnter = () => {
       if (modalRef.current) {
-        modalRef.current.classList.add('modal-fade-enter')
+        modalRef.current.classList.add("modal-fade-enter");
       }
+    };
+    if (show) {
+      handleModalEnter();
+    } else {
+      handleModalExit();
     }
-  })
+  }, [show]);
+  const notify = () => {
+    toast.success("Add To Cart success!", {
+      position: "top-center",
+    });
+  };
   return (
     <div>
       <Button variant="light" onClick={handleShow} className="detail-btn">
-        <img src={nike.url} alt="" style={{ width: "150px" }} />
+        <img src={nike.url} alt="" />
       </Button>
 
       <Modal
@@ -73,6 +84,7 @@ function NikeModal({ nike }) {
             <Button
               onClick={() => {
                 handleClose();
+                notify()
               }}
               className="addToCart-btn"
             >
@@ -81,6 +93,7 @@ function NikeModal({ nike }) {
           </div>
         </Modal.Body>
       </Modal>
+      <Toaster />
     </div>
   );
 }
