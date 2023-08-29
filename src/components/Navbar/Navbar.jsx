@@ -96,9 +96,9 @@ export default function Navbar() {
               />
             </form>
 
-            <a className="link-secondary me-3" href="#">
+            <Link className="link-secondary me-3" to="/cart">
               <i className="fas fa-shopping-cart" />
-            </a>
+            </Link>
             {/* Notifications */}
             <div className="dropdown">
               <a

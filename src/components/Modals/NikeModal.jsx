@@ -63,7 +63,7 @@ function NikeModal({ nike }) {
                     }
                   }}
                 >
-                  <span className="material-symbols-outlined">remove</span>
+                  <span class="material-symbols-outlined">remove</span>
                 </button>
 
                 <span className="quantity" style={{ fontSize: "18px" }}>
@@ -71,7 +71,7 @@ function NikeModal({ nike }) {
                 </span>
 
                 <button onClick={() => setQuantity(quantity + 1)}>
-                  <span className="material-symbols-outlined">add</span>
+                  <span class="material-symbols-outlined">add</span>
                 </button>
               </div>
 
