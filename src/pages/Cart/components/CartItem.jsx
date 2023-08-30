@@ -3,7 +3,7 @@ import { convertToVND, randomId } from '@mieuteacher/meomeojs';
 import { useDispatch, useSelector } from "react-redux";
 import { userLoginActions } from "@rtk/userLogin.slice";
 
-export default function CartItem({ nike, cartData, setCartData }) {
+export default function CartItem({ nike, setSubTotal, cartData, setCartData }) {
   const [quantity, setQuantity] = useState(nike.quantity);
 
   const dispatch = useDispatch();
@@ -13,6 +13,30 @@ export default function CartItem({ nike, cartData, setCartData }) {
   useEffect(() => {
     dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")));
   }, []);
+
+  const handleDeleteProduct = (productId) => {
+    let carts = userLoginStore.userInfor.carts
+    let updatedCart = carts.filter(cart => cart.productId !== productId)
+    console.log("updatedCart:", updatedCart)
+    setCartData(updatedCart)
+
+    //tính tổng giá trị mới
+    let updateSubTotal = updatedCart.reduce((total, nike) => {
+      return total + nike.price * nike.quantity
+    }, 0)
+    
+    //cập nhật tổng giá tiền
+    setSubTotal(updateSubTotal)
+    
+    dispatch(userLoginActions.updateCart(
+      {
+          userId: userLoginStore.userInfor.id,
+          carts: {
+              carts: updatedCart
+          }
+      }
+  ))
+  }
 
   return (
     <div className="box" key={randomId()}>

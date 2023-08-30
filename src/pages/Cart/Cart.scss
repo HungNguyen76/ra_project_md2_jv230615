@@ -3,7 +3,7 @@
     top: 8.5rem;
     left: 0;
     right: 0;
-    z-index: 1000;
+    // z-index: 1000;
     height: calc(100vh - 8.5rem);
     background: #fff;
     overflow-y: scroll;
@@ -16,7 +16,7 @@
         animation: fadeUp 0.4s linear;
 
         .title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             padding: 1rem;
             color: #130f40;
             border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);

@@ -12,7 +12,7 @@
       "carts": [
         {
           "productId": 2,
-          "quantity": 2,
+          "quantity": 3,
           "url": "../src/assets/images/product/jordan/jordan2.webp",
           "name": "Jordan Retro 6 G",
           "price": 5750000
@@ -30,13 +30,6 @@
           "url": "../src/assets/images/product/basketball/basketball2.webp",
           "name": "Nike G.T. Jump 2 EP",
           "price": 5800000
-        },
-        {
-          "productId": 8,
-          "quantity": 1,
-          "url": "../src/assets/images/product/lifestyle/lifestyle2.webp",
-          "name": "Air Jordan 1 Low SE",
-          "price": 58000000
         }
       ]
     },
@@ -48,7 +41,8 @@
       "firstName": "Hong Son",
       "lastName": "Tran",
       "email": "thson@gmail.com",
-      "avatar": "https://firebasestorage.googleapis.com/v0/b/final-project-react-60620.appspot.com/o/avatar.png?alt=media&token=34478a15-3766-46ff-af42-d810b3d27efa"
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/final-project-react-60620.appspot.com/o/avatar.png?alt=media&token=34478a15-3766-46ff-af42-d810b3d27efa",
+      "carts": []
     },
     {
       "userName": "pvduc",
@@ -58,6 +52,7 @@
       "lastName": "Phan",
       "email": "pvduc@gmail.com",
       "avatar": "https://firebasestorage.googleapis.com/v0/b/final-project-react-66397.appspot.com/o/avatar.jpg?alt=media&token=5e3ae331-7ba1-460f-9119-8bed92233f7a",
+      "carts": [],
       "id": 3
     },
     {
@@ -68,6 +63,7 @@
       "lastName": "Phan",
       "email": "pvduc@gmail.com",
       "avatar": "https://firebasestorage.googleapis.com/v0/b/final-project-react-66397.appspot.com/o/avatar.jpg?alt=media&token=5e3ae331-7ba1-460f-9119-8bed92233f7a",
+      "carts": [],
       "id": 5
     }
   ],

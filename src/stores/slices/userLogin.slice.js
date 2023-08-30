@@ -19,7 +19,6 @@ const checkTokenLocal = createAsyncThunk("checkTokenLocal", async (token) => {
   };
 });
 const updateCart = createAsyncThunk("updateCarts", async (dataObj) => {
-  console.log("🚀 ~ file: userLogin.slice.js:22 ~ updateCart ~ dataObj:", dataObj)
   let res = await axios.patch(
     import.meta.env.VITE_API_URL + "/users/" + dataObj.userId,
     dataObj.carts

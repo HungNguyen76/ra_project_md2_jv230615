@@ -12,7 +12,7 @@ export default function Navbar() {
   const [avatarImg, setAvatarImg] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const checkIsLogin = () => {
     const token = localStorage.getItem("token");
     setIsLogin(token);
@@ -42,6 +42,20 @@ export default function Navbar() {
   useEffect(() => {
     dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")));
   }, []);
+
+  const cartItems = useSelector(
+    (store) => store.userLoginStore.userInfor?.carts || []
+  );
+
+  const cartTotalQuantity = cartItems.reduce((total, food) => {
+    return total + food.quantity;
+  }, 0);
+
+  let cartsLocal = JSON.parse(localStorage.getItem("carts")) || [];
+
+  const cartLocalTotalQuantity = cartsLocal.reduce((total, food) => {
+    return total + food.quantity;
+  }, 0);
 
   return (
     <>
@@ -96,9 +110,22 @@ export default function Navbar() {
               />
             </form>
 
-            <Link className="link-secondary me-3" to="/cart">
+            {/* <Link className="link-secondary me-3 cart-btn" to="/cart">
               <i className="fas fa-shopping-cart" />
-            </Link>
+              <span className="totalQuantity">
+                {isLogin ? cartTotalQuantity : cartLocalTotalQuantity}
+              </span>
+            </Link> */}
+            <div
+              id="cart-btn"
+              className="link-secondary me-3"
+              onClick={() => navigate("/cart")}
+            >
+              <i className="fas fa-shopping-cart" />
+              <span className="badge rounded-pill badge-notification bg-danger">
+                {isLogin ? cartTotalQuantity : cartLocalTotalQuantity}
+              </span>
+            </div>
             {/* Notifications */}
             <div className="dropdown">
               <a
@@ -183,7 +210,11 @@ export default function Navbar() {
                 </li>
                 <li>
                   {isLogin ? (
-                    <Link className="dropdown-item" to="/" onClick={handleLogout}>
+                    <Link
+                      className="dropdown-item"
+                      to="/"
+                      onClick={handleLogout}
+                    >
                       Logout
                     </Link>
                   ) : (
