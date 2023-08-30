@@ -12,10 +12,31 @@
       "carts": [
         {
           "productId": 2,
+          "quantity": 2,
+          "url": "../src/assets/images/product/jordan/jordan2.webp",
+          "name": "Jordan Retro 6 G",
+          "price": 5750000
+        },
+        {
+          "productId": 1,
+          "quantity": 2,
+          "url": "../src/assets/images/product/jordan/jordan1.webp",
+          "name": "Jordan Max Aura 5",
+          "price": 5750000
+        },
+        {
+          "productId": 6,
           "quantity": 1,
-          "url": "../image/combo/combo_02.jpg",
-          "name": "King Jr Meal 2",
-          "price": 77500
+          "url": "../src/assets/images/product/basketball/basketball2.webp",
+          "name": "Nike G.T. Jump 2 EP",
+          "price": 5800000
+        },
+        {
+          "productId": 8,
+          "quantity": 1,
+          "url": "../src/assets/images/product/lifestyle/lifestyle2.webp",
+          "name": "Air Jordan 1 Low SE",
+          "price": 58000000
         }
       ]
     },
@@ -55,7 +76,7 @@
       "id": 1,
       "name": "Jordan Max Aura 5",
       "url": "../src/assets/images/product/jordan/jordan1.webp",
-      "price": 57500,
+      "price": 5750000,
       "stock": 34,
       "type": "jordan",
       "gender": "men"
@@ -64,7 +85,7 @@
       "id": 2,
       "name": "Jordan Retro 6 G",
       "url": "../src/assets/images/product/jordan/jordan2.webp",
-      "price": 57500,
+      "price": 5750000,
       "stock": 25,
       "type": "jordan",
       "gender": "men"
@@ -73,8 +94,8 @@
       "id": 3,
       "name": "Jordan InfinityRN 4",
       "url": "../src/assets/images/product/running/running1.webp",
-      "price": 40000,
-      "stock":10,
+      "price": 4000000,
+      "stock": 10,
       "type": "running",
       "gender": "men"
     },
@@ -82,7 +103,7 @@
       "id": 4,
       "name": "Jordan Free RN NN",
       "url": "../src/assets/images/product/running/running2.webp",
-      "price": 58000,
+      "price": 5800000,
       "stock": 30,
       "type": "running",
       "gender": "men"
@@ -91,7 +112,7 @@
       "id": 5,
       "name": "Air Jordan XXXVIII PF",
       "url": "../src/assets/images/product/basketball/basketball1.webp",
-      "price": 58000,
+      "price": 5800000,
       "stock": 49,
       "type": "basketball",
       "gender": "men"
@@ -100,7 +121,7 @@
       "id": 6,
       "name": "Nike G.T. Jump 2 EP",
       "url": "../src/assets/images/product/basketball/basketball2.webp",
-      "price": 58000,
+      "price": 5800000,
       "stock": 45,
       "type": "basketball",
       "gender": "men"
@@ -109,8 +130,8 @@
       "id": 7,
       "name": "Nike Dunk Low Retro",
       "url": "../src/assets/images/product/lifestyle/lifestyle1.webp",
-      "price": 580000,
-      "stock":34,
+      "price": 5800000,
+      "stock": 34,
       "type": "lifestyle",
       "gender": "men"
     },
@@ -118,7 +139,7 @@
       "id": 8,
       "name": "Air Jordan 1 Low SE",
       "url": "../src/assets/images/product/lifestyle/lifestyle2.webp",
-      "price": 580000,
+      "price": 5800000,
       "stock": 76,
       "type": "lifestyle",
       "gender": "men"
@@ -127,8 +148,8 @@
       "id": 9,
       "name": "Nike Tiempo Legend 10 Academy",
       "url": "../src/assets/images/product/football/football1.webp",
-      "price": 58000,
-      "stock":90,
+      "price": 5800000,
+      "stock": 90,
       "type": "football",
       "gender": "men"
     }

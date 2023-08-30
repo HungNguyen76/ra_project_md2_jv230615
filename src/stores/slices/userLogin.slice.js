@@ -1,6 +1,7 @@
 import api from "@api";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import CryptoJS from "crypto-js";
+import axios from "axios";
 
 const login = createAsyncThunk("login", async (inforLogin) => {
   let res = await api.user.findAllUser();
@@ -17,7 +18,14 @@ const checkTokenLocal = createAsyncThunk("checkTokenLocal", async (token) => {
     token: token,
   };
 });
-
+const updateCart = createAsyncThunk("updateCarts", async (dataObj) => {
+  console.log("🚀 ~ file: userLogin.slice.js:22 ~ updateCart ~ dataObj:", dataObj)
+  let res = await axios.patch(
+    import.meta.env.VITE_API_URL + "/users/" + dataObj.userId,
+    dataObj.carts
+  );
+  return res.data;
+});
 function createToken(userObj, privateKey) {
   return CryptoJS.AES.encrypt(JSON.stringify(userObj), privateKey).toString();
 }
@@ -45,11 +53,12 @@ const userLoginSlice = createSlice({
   },
   reducers: {
     logOut: (state, action) => {
-      console.log("action:", action)
+      console.log("action:", action);
       return {
-        ...state, userInfor: null
-      }
-    }
+        ...state,
+        userInfor: null,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
@@ -94,11 +103,16 @@ const userLoginSlice = createSlice({
         localStorage.removeItem("token");
       }
     });
+    builder.addCase(updateCart.fulfilled, (state, action) => {
+      state.userInfor = action.payload;
+      localStorage.removeItem("carts");
+    });
   },
 });
 export const userLoginActions = {
   ...userLoginSlice.actions,
   login,
   checkTokenLocal,
+  updateCart,
 };
 export default userLoginSlice.reducer;

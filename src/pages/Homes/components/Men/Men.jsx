@@ -10,11 +10,11 @@ export default function Men() {
   const listProductByGender = useSelector(
     (store) => store.productStore.listProducts
   );
-  console.log("🚀 ~ file: Men.jsx:12 ~ Men ~ listProductByGender:", listProductByGender)
+  // console.log("🚀 ~ file: Men.jsx:12 ~ Men ~ listProductByGender:", listProductByGender)
 
   const dispatch = useDispatch();
   const { type } = useParams();
-  console.log("🚀 ~ file: Men.jsx:16 ~ Men ~ gender:", type)
+  // console.log("🚀 ~ file: Men.jsx:16 ~ Men ~ gender:", type)
 
   useEffect(() => {
     dispatch(productActions.filterProductByGender(type));

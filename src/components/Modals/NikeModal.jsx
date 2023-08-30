@@ -4,6 +4,8 @@ import Modal from "react-bootstrap/Modal";
 import "./NikeModal.scss";
 import { convertToVND } from "@mieuteacher/meomeojs";
 import toast, { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { userLoginActions } from "@rtk/userLogin.slice";
 
 function NikeModal({ nike }) {
   const modalRef = useRef(null);
@@ -34,6 +36,41 @@ function NikeModal({ nike }) {
       position: "top-center",
     });
   };
+
+  const dispatch = useDispatch();
+  const userLoginStore = useSelector((store) => store.userLoginStore);
+
+  useEffect(() => {
+    dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")));
+  }, []);
+
+  function addToCart(buyItem) {
+    if (localStorage.getItem("token")) {
+      let carts = [];
+      let flag = false;
+      carts = userLoginStore.userInfor?.carts?.slice().map((item) => {
+        if (item.productId == buyItem.productId) {
+          let temp = { ...item };
+          temp.quantity += buyItem.quantity;
+          flag = true;
+          return temp;
+        }
+        return item;
+      });
+      if (!flag) {
+        carts?.push(buyItem);
+      }
+      dispatch(
+        userLoginActions.updateCart({
+          userId: userLoginStore.userInfor?.id,
+          carts: {
+            carts: carts,
+          },
+        })
+      );
+      return;
+    }
+  }
   return (
     <div>
       <Button variant="light" onClick={handleShow} className="detail-btn">
@@ -84,7 +121,14 @@ function NikeModal({ nike }) {
             <Button
               onClick={() => {
                 handleClose();
-                notify()
+                notify();
+                addToCart({
+                  productId: nike.id,
+                  quantity: quantity,
+                  url: nike.url,
+                  name: nike.name,
+                  price: nike.price
+                })
               }}
               className="addToCart-btn"
             >
