@@ -52,7 +52,22 @@
       "lastName": "Phan",
       "email": "pvduc@gmail.com",
       "avatar": "https://firebasestorage.googleapis.com/v0/b/final-project-react-66397.appspot.com/o/avatar.jpg?alt=media&token=5e3ae331-7ba1-460f-9119-8bed92233f7a",
-      "carts": [],
+      "carts": [
+        {
+          "productId": 2,
+          "quantity": 2,
+          "url": "../src/assets/images/product/jordan/jordan2.webp",
+          "name": "Jordan Retro 6 G",
+          "price": 5750000
+        },
+        {
+          "productId": 6,
+          "quantity": 4,
+          "url": "../src/assets/images/product/basketball/basketball2.webp",
+          "name": "Nike G.T. Jump 2 EP",
+          "price": 5800000
+        }
+      ],
       "id": 3
     },
     {

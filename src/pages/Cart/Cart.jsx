@@ -26,29 +26,31 @@ export default function Cart() {
   const nikeSubTotal = cartData.reduce((total, nike) => {
     return total + nike.price * nike.quantity;
   }, 0);
-  console.log("nikeSubTotal:", nikeSubTotal)
   const [subTotal, setSubTotal] = useState(nikeSubTotal);
-  console.log("subTotal:", subTotal)
 
   return (
     <section className="shopping-cart-container">
       <div className="products-container">
         <h3 className="title">Your Cart</h3>
-        {cartData.length !== 0 ? (<div className="box-container">
-          {cartsLocal ? (
-            <CartItemLocal />
-          ) : (
-            cartData?.map((cart) => (
-              <CartItem
-                key={cart.productId}
-                nike={cart}
-                cartData={cartData}
-                setCartData={setCartData}
-                setSubTotal={(newSubTotal) => setSubTotal(newSubTotal)}
-              />
-            ))
-          )}
-        </div>) : (<p className="title">There is no item in your bag</p>)}
+        {cartData.length !== 0 ? (
+          <div className="box-container">
+            {cartsLocal ? (
+              <CartItemLocal />
+            ) : (
+              cartData?.map((cart) => (
+                <CartItem
+                  key={cart.productId}
+                  nike={cart}
+                  cartData={cartData}
+                  setCartData={setCartData}
+                  setSubTotal={(newSubTotal) => setSubTotal(newSubTotal)}
+                />
+              ))
+            )}
+          </div>
+        ) : (
+          <p className="title">There is no item in your bag</p>
+        )}
       </div>
       <div className="cart-total">
         <div className="box">

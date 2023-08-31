@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { convertToVND, randomId } from '@mieuteacher/meomeojs';
+import { convertToVND, randomId } from "@mieuteacher/meomeojs";
 import { useDispatch, useSelector } from "react-redux";
 import { userLoginActions } from "@rtk/userLogin.slice";
-
+import "../Cart.scss";
 export default function CartItem({ nike, setSubTotal, cartData, setCartData }) {
   const [quantity, setQuantity] = useState(nike.quantity);
 
@@ -15,29 +15,54 @@ export default function CartItem({ nike, setSubTotal, cartData, setCartData }) {
   }, []);
 
   const handleDeleteProduct = (productId) => {
-    let carts = userLoginStore.userInfor.carts
-    let updatedCart = carts.filter(cart => cart.productId !== productId)
-    console.log("updatedCart:", updatedCart)
-    setCartData(updatedCart)
+    let carts = userLoginStore.userInfor.carts;
+    let updatedCart = carts.filter((cart) => cart.productId !== productId);
+    setCartData(updatedCart);
 
     //tính tổng giá trị mới
     let updateSubTotal = updatedCart.reduce((total, nike) => {
-      return total + nike.price * nike.quantity
-    }, 0)
-    
-    //cập nhật tổng giá tiền
-    setSubTotal(updateSubTotal)
-    
-    dispatch(userLoginActions.updateCart(
-      {
-          userId: userLoginStore.userInfor.id,
-          carts: {
-              carts: updatedCart
-          }
-      }
-  ))
-  }
+      return total + nike.price * nike.quantity;
+    }, 0);
 
+    //cập nhật tổng giá tiền
+    setSubTotal(updateSubTotal);
+
+    dispatch(
+      userLoginActions.updateCart({
+        userId: userLoginStore.userInfor.id,
+        carts: {
+          carts: updatedCart,
+        },
+      })
+    );
+  };
+
+  const handleChangeQuantity = (productCart) => {
+    console.log("productCart:", productCart)
+    let updatedCart = cartData.map((product) => {
+      console.log("product:", product)
+      if (product.productId === productCart.productId) {
+        return productCart;
+      } else {
+        return product;
+      }
+    });
+    setCartData(updatedCart);
+
+    //Tính tổng giá trị mới
+    let nikeSubTotal = updatedCart.reduce((total, nike) => {
+      return total + nike.price * nike.quantity;
+    },0);
+    setSubTotal(nikeSubTotal);
+    dispatch(
+      userLoginActions.updateCart({
+        userId: userLoginStore.userInfor.id,
+        carts: {
+          carts: updatedCart,
+        },
+      })
+    );
+  };
   return (
     <div className="box" key={randomId()}>
       <i
@@ -54,19 +79,25 @@ export default function CartItem({ nike, setSubTotal, cartData, setCartData }) {
               onClick={() => {
                 if (quantity > 1) {
                   setQuantity(quantity - 1);
+                  handleChangeQuantity({
+                    ...nike,
+                    quantity: quantity - 1,
+                  });
                 }
               }}
             >
               <span className="material-symbols-outlined">remove</span>
             </button>
 
-            <span className="quantity" style={{ fontSize: "18px" }}>
-              {quantity}
-            </span>
+            <span className="quantity">{quantity}</span>
 
             <button
               onClick={() => {
                 setQuantity(quantity + 1);
+                handleChangeQuantity({
+                  ...nike,
+                  quantity: quantity + 1,
+                });
               }}
             >
               <span className="material-symbols-outlined">add</span>
