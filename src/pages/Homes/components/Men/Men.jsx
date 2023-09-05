@@ -1,10 +1,10 @@
-import './Men.scss'
+import "./Men.scss";
 import { useEffect } from "react";
-import { convertToVND } from '@mieuteacher/meomeojs';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { productActions } from '@rtk/product.slice';
-import NikeModal from '@comp/Modals/NikeModal';
+import { convertToVND } from "@mieuteacher/meomeojs";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { productActions } from "@rtk/product.slice";
+import NikeModal from "@comp/Modals/NikeModal";
 
 export default function Men() {
   const listProductByGender = useSelector(

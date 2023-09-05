@@ -11,20 +11,6 @@
       "avatar": "https://mdbcdn.b-cdn.net/img/new/avatars/2.webp",
       "carts": [
         {
-          "productId": 2,
-          "quantity": 3,
-          "url": "../src/assets/images/product/jordan/jordan2.webp",
-          "name": "Jordan Retro 6 G",
-          "price": 5750000
-        },
-        {
-          "productId": 1,
-          "quantity": 2,
-          "url": "../src/assets/images/product/jordan/jordan1.webp",
-          "name": "Jordan Max Aura 5",
-          "price": 5750000
-        },
-        {
           "productId": 6,
           "quantity": 1,
           "url": "../src/assets/images/product/basketball/basketball2.webp",
@@ -55,17 +41,10 @@
       "carts": [
         {
           "productId": 2,
-          "quantity": 2,
+          "quantity": 1,
           "url": "../src/assets/images/product/jordan/jordan2.webp",
           "name": "Jordan Retro 6 G",
           "price": 5750000
-        },
-        {
-          "productId": 6,
-          "quantity": 4,
-          "url": "../src/assets/images/product/basketball/basketball2.webp",
-          "name": "Nike G.T. Jump 2 EP",
-          "price": 5800000
         }
       ],
       "id": 3

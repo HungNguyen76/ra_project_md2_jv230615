@@ -8,6 +8,7 @@ import Loading from "@comp/Loading/Loading";
 export default function Login() {
   const dispatch = useDispatch();
   const userLoginStore = useSelector((store) => store.userLoginStore);
+  console.log("userLoginStore.userInfor:", userLoginStore.userInfor);
   const navigate = useNavigate();
   const handleSubmit = (eventForm) => {
     eventForm.preventDefault();
@@ -33,6 +34,9 @@ export default function Login() {
         );
       }
     } else {
+      if (userLoginStore.userInfor.userName === "admin") {
+        navigate("/admin");
+      }
       navigate("/");
     }
   }, [userLoginStore.userInfor]);

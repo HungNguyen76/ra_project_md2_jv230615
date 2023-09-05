@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userLoginActions } from "@rtk/userLogin.slice";
 import "../Cart.scss";
 export default function CartItem({ nike, setSubTotal, cartData, setCartData }) {
+  
   const [quantity, setQuantity] = useState(nike.quantity);
 
   const dispatch = useDispatch();
@@ -38,9 +39,9 @@ export default function CartItem({ nike, setSubTotal, cartData, setCartData }) {
   };
 
   const handleChangeQuantity = (productCart) => {
-    console.log("productCart:", productCart)
+    console.log("productCart:", productCart);
     let updatedCart = cartData.map((product) => {
-      console.log("product:", product)
+      console.log("product:", product);
       if (product.productId === productCart.productId) {
         return productCart;
       } else {
@@ -52,7 +53,7 @@ export default function CartItem({ nike, setSubTotal, cartData, setCartData }) {
     //Tính tổng giá trị mới
     let nikeSubTotal = updatedCart.reduce((total, nike) => {
       return total + nike.price * nike.quantity;
-    },0);
+    }, 0);
     setSubTotal(nikeSubTotal);
     dispatch(
       userLoginActions.updateCart({
@@ -90,7 +91,12 @@ export default function CartItem({ nike, setSubTotal, cartData, setCartData }) {
             </button>
 
             <span className="quantity">{quantity}</span>
-
+            {/* <div
+              className="fb-comments"
+              data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
+              data-width=""
+              data-numposts="5"
+            ></div> */}
             <button
               onClick={() => {
                 setQuantity(quantity + 1);
@@ -104,9 +110,11 @@ export default function CartItem({ nike, setSubTotal, cartData, setCartData }) {
             </button>
           </div>
         </div>
+
         <br />
         <span> price : </span>
         <span className="price"> {convertToVND(nike.price)} </span>
+
       </div>
     </div>
   );

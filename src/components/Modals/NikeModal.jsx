@@ -6,8 +6,26 @@ import { convertToVND } from "@mieuteacher/meomeojs";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { userLoginActions } from "@rtk/userLogin.slice";
+import { cartsActions } from "@rtk/cart.slice";
 
 function NikeModal({ nike }) {
+  // async function reloadSdkFb() {
+  //   if (window.FB) {
+  //     window.FB.XFBML.parse();
+  //   }
+  //   (function (d, s, id) {
+  //     var js,
+  //       fjs = d.getElementsByTagName(s)[0];
+  //     if (d.getElementById(id)) return;
+  //     js = d.createElement(s);
+  //     js.id = id;
+  //     js.src = "https://connect.facebook.net/vi_VN/sdk.js";
+  //     fjs.parentNode.insertBefore(js, fjs);
+  //   })(document, "script", "facebook-jssdk");
+  // }
+  // useEffect(() => {
+  //   reloadSdkFb();
+  // }, []);
   const modalRef = useRef(null);
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -70,6 +88,30 @@ function NikeModal({ nike }) {
       );
       return;
     }
+    // chưa đăng nhập
+
+    if (localStorage.getItem("carts")) {
+      // đã từng có giỏ hàng
+      let carts = JSON.parse(localStorage.getItem("carts"));
+      let flag = false;
+      carts.map((item) => {
+        if (item.productId == buyItem.productId) {
+          item.quantity += buyItem.quantity;
+          flag = true;
+        }
+        return item;
+      });
+      if (!flag) {
+        carts.push(buyItem);
+      }
+      dispatch(cartsActions.updateCartLocal(carts));
+      localStorage.setItem("carts", JSON.stringify(carts));
+    } else {
+      // chưa từng có
+      let carts = [buyItem];
+      dispatch(cartsActions.updateCartLocal(carts));
+      localStorage.setItem("carts", JSON.stringify(carts));
+    }
   }
   return (
     <div>
@@ -91,6 +133,7 @@ function NikeModal({ nike }) {
           </div>
           <div className="product-detail">
             <h5>{nike.name}</h5>
+
             <div className="quantity-container">
               <div>
                 <button
@@ -100,7 +143,7 @@ function NikeModal({ nike }) {
                     }
                   }}
                 >
-                  <span class="material-symbols-outlined">remove</span>
+                  <span className="material-symbols-outlined">remove</span>
                 </button>
 
                 <span className="quantity" style={{ fontSize: "18px" }}>
@@ -108,7 +151,7 @@ function NikeModal({ nike }) {
                 </span>
 
                 <button onClick={() => setQuantity(quantity + 1)}>
-                  <span class="material-symbols-outlined">add</span>
+                  <span className="material-symbols-outlined">add</span>
                 </button>
               </div>
 
@@ -118,6 +161,15 @@ function NikeModal({ nike }) {
                 </span>
               </div>
             </div>
+            <div
+              className="fb-like"
+              data-href="https://82f1-171-240-254-238.ngrok-free.app/"
+              data-width="150"
+              data-layout="button_count"
+              data-action="like"
+              data-size="small"
+              data-share="true"
+            ></div>
             <Button
               onClick={() => {
                 handleClose();
@@ -127,8 +179,8 @@ function NikeModal({ nike }) {
                   quantity: quantity,
                   url: nike.url,
                   name: nike.name,
-                  price: nike.price
-                })
+                  price: nike.price,
+                });
               }}
               className="addToCart-btn"
             >
