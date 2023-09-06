@@ -4,6 +4,9 @@ import "./Navbar.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { userLoginActions } from "../../stores/slices/userLogin.slice";
+import SearchModal from "../Modals/SearchModal";
+
+
 export default function Navbar() {
   const userLoginStore = useSelector((store) => store.userLoginStore);
   const [isLogin, setIsLogin] = useState(
@@ -100,15 +103,16 @@ export default function Navbar() {
           </div>
 
           <div className="d-flex align-items-center">
-            <form className="d-flex input-group w-auto">
+            <SearchModal />
+            {/* <form className="d-flex input-group w-auto">
               <input
                 type="search"
                 className="form-control rounded m-1"
                 placeholder="Search"
                 aria-label="Search"
                 aria-describedby="search-addon"
-              />
-            </form>
+              /> 
+            </form>*/}
 
             {/* <Link className="link-secondary me-3 cart-btn" to="/cart">
               <i className="fas fa-shopping-cart" />
